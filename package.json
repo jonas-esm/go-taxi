@@ -9,16 +9,36 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "^11.13.1",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mapbox/mapbox-sdk": "^0.16.0",
+    "@mui/lab": "6.0.0-beta.8",
+    "@mui/material": "^6.0.1",
+    "@mui/material-nextjs": "^6.0.1",
+    "@mui/utils": "^6.0.1",
+    "@mui/x-date-pickers": "^7.15.0",
+    "@tanstack/react-query": "^5.53.3",
+    "@types/mapbox__mapbox-sdk": "^0.15.1",
+    "axios": "^1.7.7",
+    "classnames": "^2.5.1",
+    "date-fns": "^3.6.0",
+    "next": "14.2.7",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.7"
+    "react-hook-form": "^7.53.0",
+    "react-number-format": "^5.4.1",
+    "react-toastify": "^10.0.5",
+    "react-use": "^17.5.1",
+    "stylis-plugin-rtl": "^2.1.1"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@iconify-icon/react": "^2.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.2.7"
+    "eslint-config-next": "14.2.7",
+    "typescript": "^5"
   }
 }
