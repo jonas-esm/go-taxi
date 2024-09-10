@@ -18,19 +18,17 @@ import { isDate } from "date-fns";
 import { MobileDatePicker, MobileDatePickerProps } from "@mui/x-date-pickers";
 
 interface CustomDatePickerProps extends MobileDatePickerProps<never> {
-    name: string;
-    control: Control<any, any>;
+    name: keyof ReservationFormData;
     helperText?: string;
 }
 
 const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
     name,
-    control,
     helperText,
     ...rest
 }) => {
     const { palette } = useTheme();
-    const { watch } = useFormContext<ReservationFormData>();
+    const { control } = useFormContext<ReservationFormData>();
 
     return (
         <Controller
@@ -43,7 +41,9 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <MobileDatePicker
                         {...rest}
+                        //@ts-ignore
                         value={value}
+                        //@ts-ignore
                         defaultValue={value}
                         onChange={(v) => {
                             onChange(v);
@@ -86,7 +86,9 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
                                                     }}
                                                 >
                                                     <Icon
-                                                        icon={"tabler:calendar"}
+                                                        icon={
+                                                            "solar:calendar-linear"
+                                                        }
                                                         width={24}
                                                     />
                                                 </InputAdornment>

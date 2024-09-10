@@ -9,11 +9,13 @@ import { Box, CircularProgress, IconButton } from "@mui/material";
 import { DirectionsResponse } from "@mapbox/mapbox-sdk/services/directions";
 import * as dateFns from "date-fns";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
+import { GeocodeFeature } from "@mapbox/mapbox-sdk/services/geocoding";
+import SuccessStep from "./success-step";
 
 export interface ReservationFormData {
-    from: { label: string; value: string } | null;
+    from: GeocodeFeature | null;
     fromSearch: string;
-    to: { label: string; value: string } | null;
+    to: GeocodeFeature | null;
     toSearch: string;
     date: Date | null;
     time: Date | null;
@@ -32,7 +34,7 @@ const steps = ({
 }) => ({
     "0": <AddressForm setActiveStep={setActiveStep} />,
     "1": <PersonalInfoForm setActiveStep={setActiveStep} />,
-    "2": <OrderReview setActiveStep={setActiveStep} />,
+    "2": <SuccessStep setActiveStep={setActiveStep} />,
 });
 
 export function TripReserveForm() {
@@ -51,6 +53,9 @@ export function TripReserveForm() {
             fullName: "",
             phoneNumber: "",
             notes: "",
+            carType: "",
+            fromSearch: "",
+            toSearch: "",
         },
     });
 
@@ -66,9 +71,10 @@ export function TripReserveForm() {
             {activeStep !== 0 && (
                 <Box
                     sx={{
-                        position: "absolute",
-                        top: 10,
+                        position: "fixed",
+                        top: 12,
                         left: 8,
+                        zIndex: 99999999,
                     }}
                 >
                     <IconButton

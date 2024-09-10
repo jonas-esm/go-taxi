@@ -1,7 +1,18 @@
+import { ReservationFormData } from "@/components/home/reserve-form";
 import { useFetch } from "@/hooks/fetch.hook";
 import { type DirectionsResponse } from "@mapbox/mapbox-sdk/services/directions";
 import { GeocodeFeature } from "@mapbox/mapbox-sdk/services/geocoding";
 import { useMutation, useQuery } from "@tanstack/react-query";
+
+type postTripRequestType = {
+    carType: string;
+    fullName: string;
+    fromCoordinates: string;
+    toCoordinates: string;
+    period: string;
+    distance: string;
+    dateTime: string;
+};
 
 export const useSearchAddressMutation = () => {
     const { api } = useFetch();
@@ -12,6 +23,14 @@ export const useSearchAddressMutation = () => {
                 api.post("/api/address", { searchTerm }),
         }
     );
+};
+
+export const usePostTripRequestMutation = () => {
+    const { api } = useFetch();
+
+    return useMutation<{ data: GeocodeFeature[] }, any, postTripRequestType>({
+        mutationFn: (data) => api.post("/api/trip-reservation", data),
+    });
 };
 
 export const useSearchAddressQuery = ({
@@ -32,8 +51,8 @@ export const useTripDetialsQuery = ({
     from,
     to,
 }: {
-    from?: GeocodeFeature;
-    to?: GeocodeFeature;
+    from?: GeocodeFeature | null;
+    to?: GeocodeFeature | null;
 }) => {
     const { api } = useFetch();
 

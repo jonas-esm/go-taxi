@@ -1,18 +1,18 @@
 import React, { useRef } from "react";
 import Autocomplete, { AutocompleteProps } from "@mui/material/Autocomplete";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
-import { Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import type { Control } from "react-hook-form";
 import { InputAdornment, lighten, useTheme } from "@mui/material";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
+import { ReservationFormData } from "@/components/home/reserve-form";
 
 interface CustomAutocompleteProps {
     autoCompleteProps?: Omit<
         Omit<AutocompleteProps<any, boolean, boolean, boolean, any>, "options">,
         "renderInput"
     >;
-    name: string;
-    control: Control<any, any>;
+    name: keyof ReservationFormData;
     options: any[];
     textFieldProps?: TextFieldProps;
     iconName?: string;
@@ -20,7 +20,6 @@ interface CustomAutocompleteProps {
 
 const CustomAutocomplete: React.FC<CustomAutocompleteProps> = ({
     name,
-    control,
     options,
     textFieldProps = {},
     autoCompleteProps = {},
@@ -29,6 +28,7 @@ const CustomAutocomplete: React.FC<CustomAutocompleteProps> = ({
 }) => {
     const autocompleteRef = useRef<HTMLInputElement | null>(null);
     const { palette } = useTheme();
+    const { control } = useFormContext<ReservationFormData>();
 
     return (
         <Controller
@@ -64,7 +64,15 @@ const CustomAutocomplete: React.FC<CustomAutocompleteProps> = ({
                                                 ),
                                             }}
                                         >
-                                            <Icon icon={iconName} width={24} />
+                                            <Icon
+                                                icon={
+                                                    //@ts-ignore
+                                                    value?.id
+                                                        ? "ph:map-pin-simple-fill"
+                                                        : iconName
+                                                }
+                                                width={24}
+                                            />
                                         </InputAdornment>
                                     ) : undefined,
                                     sx: {

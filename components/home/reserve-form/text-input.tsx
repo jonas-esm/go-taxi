@@ -17,8 +17,9 @@ interface IProps {
     [key: string]: any;
 }
 
-export const TextInputShared = forwardRef(
-    (props: IProps, ref: React.Ref<HTMLDivElement>) => {
+export const TextInputShared = forwardRef<React.Ref<HTMLDivElement>, IProps>(
+    // (props: IProps, ref: React.Ref<HTMLDivElement>) => {
+    (props, ref) => {
         const { palette } = useTheme();
 
         return (

@@ -29,6 +29,13 @@ const input: Theme["components"] = {
                         color: "var(--mui-palette-action-disabled)",
                     },
             },
+
+            // input: {
+            //     "&::placeholder": {
+            //         color: "red",
+            //     },
+            //     // color: "white", // if you also want to change the color of the input, this is the prop you'd use
+            // },
         },
     },
     MuiFilledInput: {

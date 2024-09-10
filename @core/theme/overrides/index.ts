@@ -1,6 +1,7 @@
 // Type Imports
 
 // Override Imports
+import { Skin } from "@/@core/types";
 import Accordion from "./accordion";
 import Alerts from "./alert";
 import Autocomplete from "./autocomplete";
@@ -38,7 +39,7 @@ import toggleButton from "./toggle-button";
 import tooltip from "./tooltip";
 import typography from "./typography";
 
-const overrides = (skin: string) => {
+const overrides = (skin: Skin) => {
     return Object.assign(
         {},
         Accordion(skin),

@@ -1,7 +1,7 @@
 export default function Home() {
-  return (
-    <main className={{}}>
-      <div>hello</div>
-    </main>
-  );
+    return (
+        <main>
+            <div>hello</div>
+        </main>
+    );
 }

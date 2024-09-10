@@ -59,7 +59,9 @@ const CustomTimePicker: React.FC<CustomTimePickerProps> = ({
                                                     }}
                                                 >
                                                     <Icon
-                                                        icon={"tabler:clock"}
+                                                        icon={
+                                                            "solar:clock-circle-linear"
+                                                        }
                                                         width={24}
                                                     />
                                                 </InputAdornment>

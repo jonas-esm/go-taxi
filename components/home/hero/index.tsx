@@ -5,18 +5,12 @@ function HeroSection() {
     const { palette, typography } = useTheme();
 
     return (
-        <Stack
-            justifyContent={"center"}
-            alignItems={"center"}
-            spacing={2}
-            marginTop={10}
-        >
+        <Stack justifyContent={"center"} alignItems={"center"} spacing={1}>
             <Typography variant="h3">
                 Welcome to{" "}
                 <Typography
                     display={"inline"}
                     //   variant="h3"
-                    fontFamily={typography.h3.fontFamily}
                     fontSize={typography.h3.fontSize}
                     fontWeight={700}
                     color={palette.primary.main}
@@ -24,7 +18,9 @@ function HeroSection() {
                     GO TAXI
                 </Typography>
             </Typography>
-            <Typography variant="h1">Ease & Speed</Typography>
+            <Typography variant="h1" fontWeight={400}>
+                Ease & Speed
+            </Typography>
             <Typography variant="h3">Meet all your needs</Typography>
         </Stack>
     );

@@ -7,12 +7,20 @@ import {
     CircularProgress,
     Button,
     useTheme,
+    type Palette,
 } from "@mui/material";
-import { watch } from "fs";
 import React from "react";
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { ReservationFormData } from "..";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
+
+const getTextColor = (
+    item: { label: string },
+    value: string,
+    palette: Palette
+) => ({
+    color: item.label !== value ? palette.text.primary : "#fff",
+});
 
 function CarTypeSelector({
     isFetchingTripDetails,
@@ -20,79 +28,141 @@ function CarTypeSelector({
     isFetchingTripDetails?: boolean;
 }) {
     const { palette } = useTheme();
-    const { watch, setValue } = useFormContext<ReservationFormData>();
+    const { control, getValues } = useFormContext<ReservationFormData>();
 
     return (
-        <Stack>
-            {carTypeOptions.map((item, ind) => (
-                <Box
-                    key={ind}
-                    sx={{
-                        px: 3,
-                        py: 4,
-                        borderRadius: 1.5,
-                        background:
-                            item.label === watch().carType
-                                ? palette.primary.light
-                                : "#F7F8FA",
-                        mb: 2,
-                        border: `1px solid ${palette.background.paper}`,
+        <Controller
+            control={control}
+            name="carType"
+            render={({ field: { value, onChange } }) => (
+                <Stack>
+                    {carTypeOptions.map((item, ind) => (
+                        <Box
+                            key={ind}
+                            sx={{
+                                px: 3,
+                                py: 4,
+                                borderRadius: 1.5,
+                                background:
+                                    item.label === value
+                                        ? palette.info.main
+                                        : "#F7F8FA",
 
-                        cursor: "pointer",
-                        " &:hover": {
-                            background: "#f8f8f8",
-                            border: `1px solid ${palette.primary.main}`,
-                        },
-                    }}
-                    onClick={() => {
-                        console.log(item);
-                        setValue("carType", item.label);
-                    }}
-                >
-                    <Stack direction={"row"} justifyContent={"space-between"}>
-                        <Box>
-                            <Stack direction={"row"}>
-                                <Typography variant="h4" flex={1} mr={4}>
-                                    {item.label}
-                                </Typography>
+                                mb: 2,
+                                border: `1px solid ${palette.background.paper}`,
 
-                                {item.peopleIcon}
-                                <Typography display={"inline"} ml={1}>
-                                    {item.capacity}
-                                </Typography>
+                                cursor: "pointer",
+                                " &:hover":
+                                    item.label !== value
+                                        ? {
+                                              background: "#f8f8f8",
+                                              border: `1px solid ${palette.primary.main}`,
+                                          }
+                                        : undefined,
+                            }}
+                            onClick={() => {
+                                console.log(item);
+                                onChange(item.label);
+                            }}
+                        >
+                            <Stack
+                                direction={"row"}
+                                justifyContent={"space-between"}
+                            >
+                                <Box>
+                                    <Stack direction={"row"}>
+                                        <Typography
+                                            color={
+                                                getTextColor(
+                                                    item,
+                                                    value,
+                                                    palette
+                                                ).color
+                                            }
+                                            variant="h4"
+                                            mr={2}
+                                        >
+                                            {item.label}
+                                        </Typography>
+
+                                        {/* {item.peopleIcon} */}
+                                        <item.peopleIcon
+                                            color={
+                                                getTextColor(
+                                                    item,
+                                                    value,
+                                                    palette
+                                                ).color
+                                            }
+                                        />
+                                        <Typography
+                                            color={
+                                                getTextColor(
+                                                    item,
+                                                    value,
+                                                    palette
+                                                ).color
+                                            }
+                                            display={"inline"}
+                                            ml={1}
+                                            sx={getTextColor(
+                                                item,
+                                                value,
+                                                palette
+                                            )}
+                                        >
+                                            {item.capacity}
+                                        </Typography>
+                                    </Stack>
+                                    <Typography
+                                        color={
+                                            getTextColor(item, value, palette)
+                                                .color
+                                        }
+                                    >
+                                        {item.discription}
+                                    </Typography>
+                                </Box>
+
+                                {isFetchingTripDetails ? (
+                                    <Icon
+                                        icon={"eos-icons:three-dots-loading"}
+                                        color={palette.primary.main}
+                                        style={{
+                                            color: palette.primary.main,
+                                            fontSize: 40,
+                                        }}
+                                    />
+                                ) : getValues().tripDetails?.routes[0]
+                                      ?.distance ? (
+                                    <Box
+                                        ml={"auto"}
+                                        color={getTextColor(
+                                            item,
+                                            value,
+                                            palette
+                                        )}
+                                    >
+                                        <div className="text-black ">
+                                            {formatTime(
+                                                getValues().tripDetails
+                                                    ?.routes[0].duration || 0
+                                            )}
+                                        </div>
+                                        <div className="text-black">
+                                            {formatDistance(
+                                                getValues().tripDetails
+                                                    ?.routes[0].distance || 0
+                                            )}
+                                        </div>
+                                    </Box>
+                                ) : null}
                             </Stack>
-                            <Typography>{item.discription}</Typography>
                         </Box>
-
-                        {isFetchingTripDetails ? (
-                            <Icon
-                                icon={"eos-icons:three-dots-loading"}
-                                color={palette.primary.main}
-                                style={{
-                                    color: palette.primary.main,
-                                    fontSize: 40,
-                                }}
-                            />
-                        ) : watch().tripDetails?.routes[0]?.distance ? (
-                            <Box ml={"auto"}>
-                                <div className="text-black ">
-                                    {formatTime(
-                                        watch().tripDetails?.routes[0]
-                                            .duration || 0
-                                    )}
-                                </div>
-                                <div className="text-black">
-                                    {formatDistance(
-                                        watch().tripDetails?.routes[0]
-                                            .distance || 0
-                                    )}
-                                </div>
-                            </Box>
-                        ) : null}
-                    </Stack>
-                </Box>
-            ))}
-        </Stack>
+                    ))}
+                </Stack>
+            )}
+        />
     );
 }
 
