@@ -1,6 +1,8 @@
 import { Avatar, Box, Card, Typography, useTheme } from "@mui/material";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+
+import type { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
+
 import React from "react";
 
 const MissionImage = require("/assets/about_us.png");
@@ -36,6 +38,7 @@ function InfoCardComponent({
                         width: 130,
                         height: 130,
                         background: "#fff",
+
                         // boxShadow: "0px 4px 12px 0px #00000024",
                         border: "1px solid #c0c0c0",
                         zIndex: -1,
@@ -58,6 +61,7 @@ function InfoCardComponent({
                         width: 178,
                         height: 178,
                         background: "#fff",
+
                         // boxShadow: "0px 4px 12px 0px #00000024",
                         border: "1px solid #dfdfdf",
                         zIndex: -2,

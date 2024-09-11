@@ -1,6 +1,8 @@
 import React from "react";
-import InfoCardComponent from "./info-card";
+
 import { Box } from "@mui/material";
+
+import InfoCardComponent from "./info-card";
 import { informationCardsData } from "./cards-data";
 
 function InfoSection() {

@@ -1,5 +1,6 @@
-import ThemeProvider from "@/components/theme";
 import React from "react";
+
+import ThemeProvider from "@/components/theme";
 import ClientProviders from "./ClientProviders";
 
 const Providers = (props: { children: React.ReactNode }) => {

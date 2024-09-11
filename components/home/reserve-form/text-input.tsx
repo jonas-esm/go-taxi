@@ -1,4 +1,6 @@
 /* eslint-disable react/display-name */
+import React, { forwardRef } from "react";
+
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
 import {
     TextField,
@@ -7,7 +9,6 @@ import {
     useTheme,
     Autocomplete,
 } from "@mui/material";
-import React, { forwardRef } from "react";
 
 interface IProps {
     label: string;
@@ -18,6 +19,7 @@ interface IProps {
 }
 
 export const TextInputShared = forwardRef<React.Ref<HTMLDivElement>, IProps>(
+
     // (props: IProps, ref: React.Ref<HTMLDivElement>) => {
     (props, ref) => {
         const { palette } = useTheme();
@@ -73,10 +75,11 @@ export const SharedAutocomplete = forwardRef(
             iconName,
             fullWidth,
         }: autocompleteProps,
-        ref
+        _
     ) => {
         return (
             <Autocomplete
+
                 // disablePortal
                 options={options || []}
                 getOptionLabel={(option: any) => option?.label || ""}

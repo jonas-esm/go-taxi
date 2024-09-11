@@ -1,7 +1,12 @@
-import { Avatar, Box, Slide, Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
-import FormContainer from "./form-container";
+
+import { Avatar, Box, Slide, Stack, Typography, useTheme } from "@mui/material";
+
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
+
+import FormContainer from "./form-container";
+
+
 import Button from "@/components/shared/button";
 
 function SuccessStep({}: { setActiveStep: (step: 0 | 1 | 2) => void }) {

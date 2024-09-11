@@ -1,5 +1,6 @@
-import { Stack, Typography, useTheme } from "@mui/material";
 import React from "react";
+
+import { Stack, Typography, useTheme } from "@mui/material";
 
 function HeroSection() {
     const { palette, typography } = useTheme();
@@ -10,6 +11,7 @@ function HeroSection() {
                 Welcome to{" "}
                 <Typography
                     display={"inline"}
+
                     //   variant="h3"
                     fontSize={typography.h3.fontSize}
                     fontWeight={700}

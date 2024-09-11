@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react";
+
 import {
     Typography,
     Card,
@@ -6,11 +8,13 @@ import {
     Box,
     Slide,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+
+import { useFormContext } from "react-hook-form";
+
 import FormContainer from "./form-container";
 import CustomTextField from "@/components/shared/text-input";
-import { useFormContext } from "react-hook-form";
-import { ReservationFormData } from ".";
+
+import type { ReservationFormData } from ".";
 import Button from "@/components/shared/button";
 import { usePostTripRequestMutation } from "@/services/address.service";
 
@@ -45,6 +49,7 @@ function PersonalInfoForm({
             dateTime: tripDate?.toISOString(),
             distance: formData.tripDetails?.routes?.[0]?.duration?.toString(),
 
+            // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
             period: formData.tripDetails?.routes?.[0]?.distance?.toString()!,
             toCoordinates: formData.to?.geometry.coordinates?.toString(),
             fromCoordinates: formData?.from?.geometry.coordinates?.toString(),
@@ -60,12 +65,14 @@ function PersonalInfoForm({
         try {
             //@ts-ignore
             const res = await mutateAsync(payload);
+
             console.log(res);
             setActiveStep(2);
         } catch (error) {
             console.log(error);
             alert("error");
         }
+
         setIsLoading(false);
     };
 
@@ -114,6 +121,7 @@ function PersonalInfoForm({
                     fullWidth
                     size="large"
                     loading={isLoading}
+
                     //@ts-ignore
                     onClick={handleSubmit(onSubmit, (er) => {
                         console.log(er);

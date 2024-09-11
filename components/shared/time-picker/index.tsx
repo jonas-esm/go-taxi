@@ -1,14 +1,12 @@
-import React, { useRef } from "react";
+import React from "react";
+
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import {
-    DatePicker,
-    type DatePickerProps,
-} from "@mui/x-date-pickers/DatePicker";
-import { type Control, Controller, UseFormGetValues } from "react-hook-form";
+import { type DatePickerProps } from "@mui/x-date-pickers/DatePicker";
+import { type Control, Controller } from "react-hook-form";
 import { InputAdornment, lighten, TextField, useTheme } from "@mui/material";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
-import { MobileTimePicker, TimePicker } from "@mui/x-date-pickers";
+import { MobileTimePicker } from "@mui/x-date-pickers";
 
 interface CustomTimePickerProps extends DatePickerProps<Date, boolean> {
     name: string;
@@ -20,7 +18,8 @@ const CustomTimePicker: React.FC<CustomTimePickerProps> = ({
     name,
     control,
     helperText,
-    ...rest
+
+    // ...rest
 }) => {
     const { palette } = useTheme();
 

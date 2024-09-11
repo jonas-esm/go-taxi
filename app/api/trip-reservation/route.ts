@@ -1,6 +1,3 @@
-import { ReservationFormData } from "@/components/home/reserve-form";
-import { onTripDetailsCalc } from "@/utils/fetch-address.utils";
-import { type GeocodeFeature } from "@mapbox/mapbox-sdk/services/geocoding";
 import axios from "axios";
 
 // const onSubmit = async (data: any) => {
@@ -42,6 +39,7 @@ const instance = axios.create({
 export async function POST(request: Request) {
     try {
         const body: bodyPayload = await request.json();
+
         console.log(body);
 
         const db_payload: db_request_type = {
@@ -63,11 +61,13 @@ export async function POST(request: Request) {
                 },
             }
         );
+
         console.log("**********RESPONSE****************", res.data);
 
         return Response.json(res.data);
     } catch (error: any) {
         console.log(error);
+
         return Response.json(
             { error: `${error}` },
             { status: error?.status || 400 }

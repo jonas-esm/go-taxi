@@ -1,17 +1,11 @@
-import React, { useRef } from "react";
-import Autocomplete, { AutocompleteProps } from "@mui/material/Autocomplete";
+import React from "react";
+
 import TextField, {
-    StandardTextFieldProps,
-    type TextFieldProps,
+    type StandardTextFieldProps,
 } from "@mui/material/TextField";
 import { Controller } from "react-hook-form";
 import type { Control } from "react-hook-form";
-import {
-    InputAdornment,
-    InputBaseProps,
-    lighten,
-    useTheme,
-} from "@mui/material";
+import { InputAdornment, lighten, useTheme } from "@mui/material";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
 
 interface CustomTextFieldProps extends StandardTextFieldProps {

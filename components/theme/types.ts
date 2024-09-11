@@ -149,6 +149,7 @@ declare module "@mui/material/styles" {
 
     // Palette
     interface Palette {
+
         //@ts-ignore
         background: {
             default: string;
@@ -167,6 +168,7 @@ declare module "@mui/material/styles" {
         };
     }
     interface PaletteOptions {
+
         //@ts-ignore
         background?: {
             default?: string;

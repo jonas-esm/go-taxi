@@ -1,21 +1,16 @@
-import React, { useRef } from "react";
+import React from "react";
+
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import {
-    DatePicker,
-    type DatePickerProps,
-} from "@mui/x-date-pickers/DatePicker";
-import {
-    type Control,
-    Controller,
-    useFormContext,
-    UseFormGetValues,
-} from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { InputAdornment, lighten, TextField, useTheme } from "@mui/material";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
-import { ReservationFormData } from "@/components/home/reserve-form";
+
 import { isDate } from "date-fns";
-import { MobileDatePicker, MobileDatePickerProps } from "@mui/x-date-pickers";
+import type { MobileDatePickerProps } from "@mui/x-date-pickers";
+import { MobileDatePicker } from "@mui/x-date-pickers";
+
+import type { ReservationFormData } from "@/components/home/reserve-form";
 
 interface CustomDatePickerProps extends MobileDatePickerProps<never> {
     name: keyof ReservationFormData;
@@ -41,8 +36,10 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <MobileDatePicker
                         {...rest}
+
                         //@ts-ignore
                         value={value}
+
                         //@ts-ignore
                         defaultValue={value}
                         onChange={(v) => {

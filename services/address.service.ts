@@ -1,8 +1,9 @@
-import { ReservationFormData } from "@/components/home/reserve-form";
-import { useFetch } from "@/hooks/fetch.hook";
 import { type DirectionsResponse } from "@mapbox/mapbox-sdk/services/directions";
-import { GeocodeFeature } from "@mapbox/mapbox-sdk/services/geocoding";
+import type { GeocodeFeature } from "@mapbox/mapbox-sdk/services/geocoding";
 import { useMutation, useQuery } from "@tanstack/react-query";
+
+import { useFetch } from "@/hooks/fetch.hook";
+import { ReservationFormData } from "@/components/home/reserve-form";
 
 type postTripRequestType = {
     carType: string;

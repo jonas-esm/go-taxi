@@ -1,10 +1,12 @@
-import geoCoding, {
+import type {
     GeocodeFeature,
 } from "@mapbox/mapbox-sdk/services/geocoding";
-import directionApi, {
+import geoCoding from "@mapbox/mapbox-sdk/services/geocoding";
+import type {
     DirectionsRequest,
 } from "@mapbox/mapbox-sdk/services/directions";
-import { Coordinates } from "@mapbox/mapbox-sdk/lib/classes/mapi-request";
+import directionApi from "@mapbox/mapbox-sdk/services/directions";
+import type { Coordinates } from "@mapbox/mapbox-sdk/lib/classes/mapi-request";
 
 console.log(process.env);
 
@@ -13,7 +15,9 @@ export const formatTime = (duration: number) => {
     const minutes = Math.floor((duration % 3600) / 60);
     const formattedHours = hours ? hours.toString() : "";
     const formattedMinutes = minutes.toString();
-    return `${
+
+    
+return `${
         formattedHours ? formattedHours + " hr " : ""
     } ${formattedMinutes} min`;
 };
@@ -23,7 +27,9 @@ export const formatDistance = (distance: number) => {
         return `${distance} m`;
     } else {
         const kilometers = distance / 1000;
-        return `${kilometers.toFixed(2)} km`;
+
+        
+return `${kilometers.toFixed(2)} km`;
     }
 };
 
@@ -33,11 +39,13 @@ export const onSearchPlace = async (value: string, MAPBOX_TOKEN: string) => {
         //@ts-ignore
         accessToken: MAPBOX_TOKEN,
     });
+
     const forwoardedGeocode = geoClient.forwardGeocode({
         query: value,
         limit: 3,
         countries: ["eg"],
     });
+
     const geocodeRes = await forwoardedGeocode.send();
 
     // console.log(geocodeRes.body);
@@ -54,6 +62,7 @@ export const onTripDetailsCalc = async (
         //@ts-ignore
         accessToken: MAPBOX_TOKEN,
     });
+
     const payload: DirectionsRequest = {
         profile: "driving-traffic",
         waypoints: [

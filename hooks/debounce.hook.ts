@@ -8,9 +8,11 @@ function useDebounce(value: any, delay: number): any {
 
     useEffect(() => {
         setIsWaiting(true);
+
         if (timeoutId) {
             clearTimeout(timeoutId);
         }
+
         timeoutId = setTimeout(() => {
             setDebouncedValue(value);
             console.log("debounce updated", value);

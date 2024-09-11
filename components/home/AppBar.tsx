@@ -1,20 +1,15 @@
 "use client";
-import {
-    AppBar,
-    Box,
-    Stack,
-    Toolbar,
-    Typography,
-    useScrollTrigger,
-    useTheme,
-} from "@mui/material";
-import LogoSvg from "../../assets/logo.svg";
 import React from "react";
+
 import Image from "next/image";
-import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
+
+import { AppBar, Box, Toolbar, useScrollTrigger } from "@mui/material";
+
+import LogoSvg from "../../assets/logo.svg";
 
 function ElevationScroll(props: any) {
     const { children, window } = props;
+
     // Note that you normally won't need to set the window ref as useScrollTrigger
     // will default to window.
     // This is only being set here because the demo is in an iframe.
@@ -35,8 +30,6 @@ function ElevationScroll(props: any) {
 }
 
 function MyAppBar() {
-    const theme = useTheme();
-
     return (
         <>
             <ElevationScroll>
@@ -58,6 +51,7 @@ function MyAppBar() {
             </ElevationScroll>
             <Toolbar />
         </>
+
         // <Box
         //     sx={{
         //         width: "100%",

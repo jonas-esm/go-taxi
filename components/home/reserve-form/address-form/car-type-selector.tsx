@@ -1,18 +1,15 @@
+import React from "react";
+
+import { Box, Stack, Typography, useTheme, type Palette } from "@mui/material";
+
+import { Controller, useFormContext } from "react-hook-form";
+
+import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
+
 import { carTypeOptions } from "@/utils/car-selector-data";
 import { formatTime, formatDistance } from "@/utils/fetch-address.utils";
-import {
-    Box,
-    Stack,
-    Typography,
-    CircularProgress,
-    Button,
-    useTheme,
-    type Palette,
-} from "@mui/material";
-import React from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import { ReservationFormData } from "..";
-import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
+
+import type { ReservationFormData } from "..";
 
 const getTextColor = (
     item: { label: string },

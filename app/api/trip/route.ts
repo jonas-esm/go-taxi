@@ -1,5 +1,6 @@
-import { onTripDetailsCalc } from "@/utils/fetch-address.utils";
 import { type GeocodeFeature } from "@mapbox/mapbox-sdk/services/geocoding";
+
+import { onTripDetailsCalc } from "@/utils/fetch-address.utils";
 
 // const onSubmit = async (data: any) => {
 //     console.log(data);
@@ -17,6 +18,7 @@ const getTripDetials = async (from: GeocodeFeature, to: GeocodeFeature) => {
 export async function POST(request: Request) {
     try {
         const body = await request.json();
+
         console.log(body);
 
         const res = await getTripDetials(body?.from, body?.to);
@@ -24,7 +26,8 @@ export async function POST(request: Request) {
         return Response.json(res);
     } catch (error: any) {
         console.log(error);
-        return Response.json(
+        
+return Response.json(
             { error: `${error}` },
             { status: error?.status || 400 }
         );

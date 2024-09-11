@@ -1,5 +1,6 @@
-import { Box, Card, CardContent, lighten, useTheme } from "@mui/material";
 import React from "react";
+
+import { Box, Card, lighten, useTheme } from "@mui/material";
 
 const FormContainer = ({
     isSuccess,

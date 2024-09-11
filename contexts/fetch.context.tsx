@@ -2,7 +2,11 @@
 import type { FC, ReactNode } from "react";
 import React, { createContext, useMemo } from "react";
 
-import type { AxiosError, AxiosInstance } from "axios";
+import type {
+
+    // AxiosError,
+    AxiosInstance,
+} from "axios";
 import axios from "axios";
 
 // const API_URL = envConfig.NEXT_PUBLIC_BASE_URL
@@ -16,14 +20,14 @@ type FetchContextInterface = {
     api: AxiosInstance;
 };
 
-type CreateInstanceParams = {
-    url: string;
-    token?: string;
-    refreshToken?: string;
-    callback: (authData: AuthResponse) => void;
-    logout: () => void;
-    companyId: string;
-};
+// type CreateInstanceParams = {
+//     url: string;
+//     token?: string;
+//     refreshToken?: string;
+//     callback: (authData: AuthResponse) => void;
+//     logout: () => void;
+//     companyId: string;
+// };
 
 export const FetchContext = createContext<FetchContextInterface | null>(null);
 
@@ -89,7 +93,7 @@ const createInstance = () => {
 };
 
 export const FetchProvider: FC<{ children: ReactNode }> = ({ children }) => {
-    const refreshToken = "";
+    // const refreshToken = "";
 
     const api = useMemo(() => {
         return createInstance();

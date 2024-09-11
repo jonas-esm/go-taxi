@@ -1,3 +1,5 @@
+import React, { useEffect } from "react";
+
 import {
     Box,
     Card,
@@ -7,11 +9,14 @@ import {
     Typography,
     useTheme,
 } from "@mui/material";
-import React, { useEffect } from "react";
+
+import { useFormContext } from "react-hook-form";
+
 import FormContainer from "../form-container";
 import Button from "@/components/shared/button";
-import { useFormContext } from "react-hook-form";
-import { ReservationFormData } from "..";
+
+
+import type { ReservationFormData } from "..";
 import CustomAutocomplete from "@/components/shared/autocomplete";
 import {
     useSearchAddressQuery,
@@ -34,12 +39,14 @@ function AddressForm({
         watch().fromSearch,
         1000
     );
+
     const [debounceSearchTo, isWaitingTo] = useDebounce(watch().toSearch, 1000);
 
     const { data: fromPlacesRes, isFetching: isFromPlacesFetching } =
         useSearchAddressQuery({
             searchTerm: debounceSearchFrom,
         });
+
     const { data: toPlacesRes, isFetching: isToPlacesFetching } =
         useSearchAddressQuery({
             searchTerm: debounceSearchTo,
@@ -50,6 +57,7 @@ function AddressForm({
             from: watch().from,
             to: watch().to,
         });
+
     useEffect(() => {
         if (
             tripDetailsRes?.data?.uuid &&
@@ -86,6 +94,7 @@ function AddressForm({
                                                     );
                                                 }
                                             },
+
                                             // inputValue: watch().fromSearch,
                                             loading: isFromPlacesFetching,
                                             getOptionLabel: (option) =>
@@ -108,6 +117,7 @@ function AddressForm({
                                                     "form onchange",
                                                     value
                                                 );
+
                                                 if (e?.type === "change") {
                                                     setValue("toSearch", value);
                                                 }
@@ -120,6 +130,7 @@ function AddressForm({
                                             //     watch().to?.label ||
                                             //     watch().toSearch,
                                             loading: isToPlacesFetching,
+
                                             // blurOnSelect: true,
                                             // selectOnFocus: true,
                                         }}
@@ -145,6 +156,7 @@ function AddressForm({
                                                 sx={{
                                                     maxHeight: 22,
                                                 }}
+
                                                 // flexItem
                                             />
                                         </Box>
@@ -170,6 +182,7 @@ function AddressForm({
                     <Button
                         sx={{ mt: 4 }}
                         fullWidth
+
                         //@ts-ignore
                         onClick={() => setActiveStep((p) => p + 1)}
                         size="large"

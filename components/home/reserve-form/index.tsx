@@ -1,15 +1,16 @@
 "use client";
 import React, { useState } from "react";
+
 import { FormProvider, useForm } from "react-hook-form";
-import AddressForm from "./address-form/address-form";
-import PersonalInfoForm from "./personal-info-form";
-import OrderReview from "./order-review";
-import FormContainer from "./form-container";
+
 import { Box, CircularProgress, IconButton } from "@mui/material";
-import { DirectionsResponse } from "@mapbox/mapbox-sdk/services/directions";
+import type { DirectionsResponse } from "@mapbox/mapbox-sdk/services/directions";
 import * as dateFns from "date-fns";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
-import { GeocodeFeature } from "@mapbox/mapbox-sdk/services/geocoding";
+import type { GeocodeFeature } from "@mapbox/mapbox-sdk/services/geocoding";
+
+import PersonalInfoForm from "./personal-info-form";
+import AddressForm from "./address-form/address-form";
 import SuccessStep from "./success-step";
 
 export interface ReservationFormData {
@@ -66,6 +67,7 @@ export function TripReserveForm() {
             </div>
         );
     }
+
     return (
         <div>
             {activeStep !== 0 && (

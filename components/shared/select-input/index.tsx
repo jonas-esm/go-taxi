@@ -45,6 +45,7 @@ export const SelectInput = forwardRef<SelectProps, SelectInputProps>(
   ) => {
     const getLabel = (item: any) =>
       typeof getOptionLabel === "function" ? getOptionLabel(item) : item;
+
     const getValue = (item: any) =>
       typeof getOptionValue === "function" ? getOptionValue(item) : item;
 
