@@ -199,8 +199,9 @@ a[x-apple-data-detectors] {
                             <p><strong>Customer:</strong> ${customerName}</p>
                             <p><strong>Date:</strong> ${date}</p>
                             <p><strong>Time:</strong> ${time}</p>
-                            <p><strong>Pickup Location:</strong> ${fromCoordinates}</p>
-                            <p><strong>Drop-off Location:</strong> ${toCoordinates}</p>
+                            <p><strong>Pickup Location:</strong> ${fromCoordinates} link: https://www.google.com/maps?q=${fromCoordinates}  </p>
+                            <p><strong>Drop-off Location:</strong> ${toCoordinates} link: https://www.google.com/maps?q=${toCoordinates}  </p>
+                            <p><strong>Directions:</strong> https://www.google.com/maps/dir/${fromCoordinates}/${toCoordinates}  </p>
                             <p><strong>Customer Phone:</strong> ${phoneNumber}</p>
                             <p><strong>Notes:</strong> ${notes}</p>
                         </div>

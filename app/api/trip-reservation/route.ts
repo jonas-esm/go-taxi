@@ -10,7 +10,7 @@ import { format } from 'date-fns'
 //     console.log(tripDirectionRes);
 // };
 
-const baseUrl = process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000'
+const baseUrl = process.env.HOST_URL ? 'https://' + process.env.HOST_URL : 'http://localhost:3000'
 
 type db_request_type = {
   'customer name': string
