@@ -47,7 +47,6 @@ function CarTypeSelector({ isFetchingTripDetails }: { isFetchingTripDetails?: bo
                     : undefined
               }}
               onClick={() => {
-                console.log(item)
                 onChange(item.label)
               }}
             >

@@ -1,5 +1,5 @@
 // Next Imports
-import { Public_Sans, Poppins } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 
 // MUI Imports
 import type { Theme } from '@mui/material/styles'

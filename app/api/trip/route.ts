@@ -1,6 +1,6 @@
-import { type GeocodeFeature } from "@mapbox/mapbox-sdk/services/geocoding";
+import { type GeocodeFeature } from '@mapbox/mapbox-sdk/services/geocoding'
 
-import { onTripDetailsCalc } from "@/utils/fetch-address.utils";
+import { onTripDetailsCalc } from '@/utils/fetch-address.utils'
 
 // const onSubmit = async (data: any) => {
 //     console.log(data);
@@ -12,24 +12,19 @@ import { onTripDetailsCalc } from "@/utils/fetch-address.utils";
 // };
 
 const getTripDetials = async (from: GeocodeFeature, to: GeocodeFeature) => {
-    return await onTripDetailsCalc(from, to, process.env.MAPBOX_TOKEN!);
-};
+  return await onTripDetailsCalc(from, to, process.env.MAPBOX_TOKEN!)
+}
 
 export async function POST(request: Request) {
-    try {
-        const body = await request.json();
+  try {
+    const body = await request.json()
 
-        console.log(body);
+    const res = await getTripDetials(body?.from, body?.to)
 
-        const res = await getTripDetials(body?.from, body?.to);
+    return Response.json(res)
+  } catch (error: any) {
+    console.log(error)
 
-        return Response.json(res);
-    } catch (error: any) {
-        console.log(error);
-        
-return Response.json(
-            { error: `${error}` },
-            { status: error?.status || 400 }
-        );
-    }
+    return Response.json({ error: `${error}` }, { status: error?.status || 400 })
+  }
 }
