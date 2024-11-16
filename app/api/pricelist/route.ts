@@ -1,8 +1,4 @@
-import { type GeocodeFeature } from '@mapbox/mapbox-sdk/services/geocoding'
-
 import axios from 'axios'
-
-import { onTripDetailsCalc } from '@/utils/fetch-address.utils'
 
 // const onSubmit = async (data: any) => {
 //     console.log(data);

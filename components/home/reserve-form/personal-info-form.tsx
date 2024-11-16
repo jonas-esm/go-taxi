@@ -11,6 +11,7 @@ import CustomTextField from '@/components/shared/text-input'
 import type { ReservationFormData } from '.'
 import Button from '@/components/shared/button'
 import { usePostTripRequestMutation } from '@/services/address.service'
+import PaymentButton from './payment-button'
 
 function PersonalInfoForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) => void }) {
   const [isLoading, setIsLoading] = useState(false)
@@ -101,6 +102,8 @@ function PersonalInfoForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) 
             </CardContent>
           </Card>
         </FormContainer>
+        <PaymentButton />
+
         <Button
           sx={{ mt: 8 }}
           fullWidth
