@@ -1,7 +1,8 @@
+'use client'
+import { useRouter } from 'next/navigation'
+
 export default function Home() {
-    return (
-        <main>
-            <div>hello</div>
-        </main>
-    );
+  const router = useRouter()
+
+  return router.replace('/en')
 }

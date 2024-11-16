@@ -23,17 +23,36 @@ export const formatDistance = (distance: number) => {
   }
 }
 
-export const onSearchPlace = async (value: string, MAPBOX_TOKEN: string) => {
+export const onSearchPlace = async (value: string) => {
   // console.log("Searching for address ", value);
+
   const geoClient = geoCoding({
     //@ts-ignore
-    accessToken: MAPBOX_TOKEN
+    accessToken: process.env.MAPBOX_TOKEN!
   })
 
   const forwoardedGeocode = geoClient.forwardGeocode({
     query: value,
-    limit: 3,
-    countries: ['eg']
+    limit: 5,
+    countries: ['eg', 'nl']
+  })
+
+  const geocodeRes = await forwoardedGeocode.send()
+
+  // console.log(geocodeRes.body);
+
+  return geocodeRes.body.features
+}
+
+export const getCoordinateAddress = async (coordinates: string[]) => {
+  const geoClient = geoCoding({
+    //@ts-ignore
+    accessToken: process.env.MAPBOX_TOKEN!
+  })
+
+  const forwoardedGeocode = geoClient.reverseGeocode({
+    // query: `${coordinates[0]},${coordinates[1]}`
+    query: coordinates
   })
 
   const geocodeRes = await forwoardedGeocode.send()

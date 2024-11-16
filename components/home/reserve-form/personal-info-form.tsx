@@ -37,15 +37,17 @@ function PersonalInfoForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) 
     const payload = {
       ...formData,
       dateTime: tripDate?.toISOString(),
-      distance: formData.tripDetails?.routes?.[0]?.duration?.toString(),
+      period: formData.tripDetails?.routes?.[0]?.duration?.toString(),
 
       // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-      period: formData.tripDetails?.routes?.[0]?.distance?.toString()!,
+      distance: formData.tripDetails?.routes?.[0]?.distance?.toString()!,
       toCoordinates: [formData.to?.geometry.coordinates?.[1], formData.to?.geometry.coordinates?.[0]].toString(),
       fromCoordinates: [
         formData?.from?.geometry.coordinates?.[1],
         formData?.from?.geometry.coordinates?.[0]
       ].toString(),
+      fromAddress: formData?.from?.place_name,
+      toAddress: formData?.to?.place_name,
       from: null,
       to: null,
       tripDetails: null,

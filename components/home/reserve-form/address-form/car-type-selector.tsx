@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { Box, Stack, Typography, useTheme, type Palette } from '@mui/material'
 
@@ -10,6 +10,7 @@ import { carTypeOptions } from '@/utils/car-selector-data'
 import { formatTime, formatDistance } from '@/utils/fetch-address.utils'
 
 import type { ReservationFormData } from '..'
+import { usePriceListQuery } from '@/services/address.service'
 
 const getTextColor = (item: { label: string }, value: string, palette: Palette) => ({
   color: item.label !== value ? palette.text.primary : '#fff'
@@ -18,6 +19,22 @@ const getTextColor = (item: { label: string }, value: string, palette: Palette) 
 function CarTypeSelector({ isFetchingTripDetails }: { isFetchingTripDetails?: boolean }) {
   const { palette } = useTheme()
   const { control, getValues } = useFormContext<ReservationFormData>()
+  const { data: priceList } = usePriceListQuery()
+
+  const tripCostList = useMemo(() => {
+    const familyRatePerKm = priceList?.data?.list?.find(item => item.category === 'public_family')?.per_km || 0
+    const economyRatePerKm = priceList?.data?.list?.find(item => item.category === 'public_economy')?.per_km || 0
+    const luxuryRatePerKm = priceList?.data?.list?.find(item => item.category === 'public_luxury')?.per_km || 0
+    const distance = getValues().tripDetails?.routes[0].distance || 0
+
+    const prices = {
+      FAMILY: (familyRatePerKm * distance) / 1000,
+      LUXURY: (luxuryRatePerKm * distance) / 1000,
+      ECONOMY: (economyRatePerKm * distance) / 1000
+    }
+
+    return prices
+  }, [priceList, getValues().tripDetails?.routes[0].distance])
 
   return (
     <Controller
@@ -81,10 +98,16 @@ function CarTypeSelector({ isFetchingTripDetails }: { isFetchingTripDetails?: bo
                       fontSize: 40
                     }}
                   />
-                ) : getValues().tripDetails?.routes[0]?.distance ? (
+                ) : tripCostList?.[item.label as 'LUXURY' | 'FAMILY' | 'ECONOMY'] ? (
                   <Box ml={'auto'} color={getTextColor(item, value, palette)}>
-                    <div className='text-black '>{formatTime(getValues().tripDetails?.routes[0].duration || 0)}</div>
-                    <div className='text-black'>{formatDistance(getValues().tripDetails?.routes[0].distance || 0)}</div>
+                    {/* <div className='text-black '>{formatTime(getValues().tripDetails?.routes[0].duration || 0)}</div> */}
+                    {/* <div className='text-black'>{formatDistance(getValues().tripDetails?.routes[0].distance || 0)}</div> */}
+                    <div className='text-black'>
+                      {(+tripCostList?.[item.label as 'LUXURY' | 'FAMILY' | 'ECONOMY']?.toFixed(2)).toLocaleString(
+                        'en'
+                      )}
+                      €
+                    </div>
                   </Box>
                 ) : null}
               </Stack>
