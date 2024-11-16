@@ -37,7 +37,7 @@ export const usePostTripRequestMutation = () => {
   })
 }
 
-export const useSearchAddressQuery = ({ searchTerm }: { searchTerm: string }) => {
+export const useSearchAddressQuery = ({ searchTerm }: { searchTerm: string | number[] }) => {
   const { api } = useFetch()
 
   return useQuery<{ data: GeocodeFeature[] }>({

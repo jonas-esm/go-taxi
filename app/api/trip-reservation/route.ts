@@ -77,7 +77,7 @@ export async function POST(request: Request) {
 
     try {
       await axios.post(baseUrl + '/api/send-email', mailPayload)
-    } catch (error) {
+    } catch (error: any) {
       console.log("Couldn't send email", error?.response?.data || error?.response || error)
     }
 
@@ -95,7 +95,7 @@ export async function POST(request: Request) {
         targetAddress: body.toAddress || 'N/A',
         tripDate: format(body.dateTime, 'dd/MM/yyyy : hh:mm a') || 'N/A'
       })
-    } catch (error) {
+    } catch (error: any) {
       console.log("Couldn't send whatsapp message", error?.response?.data || error?.response || error)
     }
 

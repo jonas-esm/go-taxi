@@ -44,14 +44,14 @@ export const onSearchPlace = async (value: string) => {
   return geocodeRes.body.features
 }
 
-export const getCoordinateAddress = async (coordinates: string[]) => {
+export const getCoordinateAddress = async (coordinates: number[]) => {
   const geoClient = geoCoding({
     //@ts-ignore
     accessToken: process.env.MAPBOX_TOKEN!
   })
 
   const forwoardedGeocode = geoClient.reverseGeocode({
-    // query: `${coordinates[0]},${coordinates[1]}`
+    //@ts-ignore
     query: coordinates
   })
 
