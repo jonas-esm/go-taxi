@@ -4,6 +4,8 @@ import { Icon } from '@iconify-icon/react/dist/iconify.mjs'
 import type { MenuProps } from '@mui/material'
 import { alpha, Box, Divider, Menu, MenuItem, styled } from '@mui/material'
 
+import { useTranslations } from 'next-intl'
+
 import Button from '../button'
 
 const StyledMenu = styled((props: MenuProps) => (
@@ -49,6 +51,7 @@ const StyledMenu = styled((props: MenuProps) => (
 function ContactUs() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
+  const t = useTranslations('successCard')
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -71,7 +74,7 @@ function ContactUs() {
         onClick={handleClick}
         endIcon={<Icon icon={'tabler:chevron-down'} />}
       >
-        Contact Us
+        {t('contactUsButton')}
       </Button>
       <Menu
         id='demo-customized-menu'
@@ -90,7 +93,7 @@ function ContactUs() {
           disableRipple
         >
           <Icon icon='ic:baseline-whatsapp' width={24} style={{ marginRight: 8, color: 'green' }} />
-          On Whatsapp
+          {t('onWhatsapp')}
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem
@@ -101,7 +104,7 @@ function ContactUs() {
           disableRipple
         >
           <Icon icon='ic:round-call' width={24} style={{ marginRight: 8, color: 'grey' }} />
-          Regular Call
+          {t('byCall')}
         </MenuItem>
       </Menu>
     </Box>

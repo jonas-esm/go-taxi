@@ -1,16 +1,6 @@
-import { Inter } from 'next/font/google'
-
 import type { Metadata } from 'next'
 
-import { Stack } from '@mui/material'
-
-import { ToastContainer } from 'react-toastify'
-
-import Providers from '@/utils/Providers'
-
 import 'react-toastify/dist/ReactToastify.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -22,14 +12,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-    <html lang='en'>
-      <body className={inter.className}>
-        <Providers>
-          <Stack justifyContent={'center'}>{children}</Stack>
-        </Providers>
-        <ToastContainer />
-      </body>
-    </html>
-  )
+  return children
 }

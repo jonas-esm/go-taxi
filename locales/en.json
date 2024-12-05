@@ -1,0 +1,63 @@
+{
+    "header": {
+        "welcome": "Welcome to",
+        "tagline": "Ease & Speed",
+        "subTagline": "Meet all your needs"
+    },
+    "home": {
+        "title": "Home",
+        "reserveTrip": "Reserve your trip",
+        "fromPlaceholder": "From...?",
+        "toPlaceholder": "To...?",
+        "datePlaceholder": "Pick a date",
+        "timePlaceholder": "Pick a time",
+        "chooseCar": "Choose car that suits you",
+        "luxury": {
+            "title": "LUXURY",
+            "capacity": "4",
+            "description": "Comfort, luxurious design"
+        },
+        "family": {
+            "title": "FAMILY",
+            "capacity": "8",
+            "description": "Big, sturdy, family friendly"
+        },
+        "economy": {
+            "title": "ECONOMY",
+            "capacity": "4",
+            "description": "Practicality, comfort, everyday use"
+        },
+        "proceedButton": "Proceed"
+    },
+    "contactForm": {
+        "title": "Enter your contact info",
+        "fullNamePlaceholder": "Full Name",
+        "phoneNumberPlaceholder": "Phone Number",
+        "notesPlaceholder": "Notes...",
+        "submitButton": "Go To Payment"
+    },
+    "aboutUs": {
+        "title": "About Us",
+        "description": "At GoTaxi, we provide a convenient and seamless online car rental experience. Our goal is to make the car rental process easy and secure for all our customers."
+    },
+    "ourMission": {
+        "title": "Our Mission",
+        "description": "Our mission is to offer the best car rental service by providing a wide range of vehicles to meet all needs, delivering exceptional customer service, and ensuring a comfortable and easy experience for all our clients."
+    },
+    "ourServices": {
+        "title": "Our Services",
+        "description": "We offer a wide range of vehicles to suit all needs, whether you are looking for an economy car, luxury vehicle, family car, or even a sports car. We are here to help you choose the perfect car for your next trip."
+    },
+    "footer": {
+        "contactUs": "Contact Us",
+        "description": "For any inquiries or more information, feel free to contact us via"
+    },
+    "successCard": {
+        "thankYouMessage": "Thank you for choosing GoTaxi",
+        "contactMessage": "We'll contact you shortly on this phone number:",
+        "bookNewRideButton": "Book new ride",
+        "contactUsButton": "Contact Us",
+        "onWhatsapp": "On Whatsapp",
+        "byCall": "Regular Call"
+    }
+}

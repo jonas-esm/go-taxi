@@ -1,6 +1,8 @@
 'use client'
 import React from 'react'
 
+import { useRouter, usePathname, useParams } from 'next/navigation'
+
 import { Icon } from '@iconify-icon/react/dist/iconify.mjs'
 import type { MenuProps } from '@mui/material'
 
@@ -55,6 +57,10 @@ const StyledMenu = styled((props: MenuProps) => (
 function ChangeLangualge() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
+  const router = useRouter()
+  const params = useParams()
+
+  const pathname = usePathname()
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -66,6 +72,10 @@ function ChangeLangualge() {
 
   const changeLanguage = (lng: string) => {
     // i18n.changeLanguage(lng) // Change language dynamically
+    console.log(pathname, params)
+
+    // router.push('/', { locale: 'ar' })
+    window.location.href = '/' + lng
   }
 
   return (

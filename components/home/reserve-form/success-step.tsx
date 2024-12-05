@@ -11,6 +11,8 @@ import { useFormContext } from 'react-hook-form'
 
 import { useSelector } from 'react-redux'
 
+import { useTranslations } from 'next-intl'
+
 import FormContainer from './form-container'
 
 import Button from '@/components/shared/button'
@@ -24,16 +26,17 @@ function SuccessStep({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) => vo
   const { reset, getValues } = useFormContext()
   const router = useRouter()
   const payment = useSelector((state: RootState) => state.payment)
+  const t = useTranslations('successCard')
 
   return (
     <Slide appear in direction='left'>
       <Box>
         <FormContainer isSuccess>
           <Typography variant='h3' mt={6} color={theme.palette.success.main} textAlign={'center'}>
-            Thank you for choosing GoTaxi
+            {t('thankYouMessage')}
           </Typography>
           <Typography textAlign={'center'} mt={2}>
-            We'll contact you shortly on this phone number: {tripState.phoneNumber}
+            {t('contactMessage')}:{tripState.phoneNumber}
           </Typography>
           <Divider sx={{ my: 6 }} />
           <Stack direction={'row'} alignItems={'center'}>
@@ -46,7 +49,7 @@ function SuccessStep({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) => vo
               sx={{ flex: 1 }}
               variant='outlined'
             >
-              Book new ride
+              {t('bookNewRideButton')}
             </Button>
             <Divider orientation='vertical' flexItem sx={{ mx: 6, height: 64 }} />
             {/* <Button sx={{ flex: 1 }}>Call Us</Button> */}

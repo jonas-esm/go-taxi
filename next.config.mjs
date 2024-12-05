@@ -1,3 +1,6 @@
+import createNextIntlPlugin from 'next-intl/plugin'
+const withNextIntl = createNextIntlPlugin()
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   //   reactStrictMode: false
@@ -6,6 +9,11 @@ const nextConfig = {
   //     defaultLocale: 'en', // Default language
   //     localeDetection: false // Enable automatic locale detection
   //   }
+  //   i18n: {
+  //     locales: ['en', 'fr'], // Add your supported locales
+  //     defaultLocale: 'en', // Set the default locale
+  //     localeDetection: false // Enable automatic locale detection
+  //   }
 }
 
-export default nextConfig
+export default withNextIntl(nextConfig)

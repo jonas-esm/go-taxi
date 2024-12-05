@@ -8,32 +8,32 @@ import FamilyCarImage from '@/assets/family_car.png'
 
 import NormalCarImage from '@/assets/normal_car.png'
 
-export const carTypeOptions = [
+export const carTypeOptions = (t: any) => [
   {
-    label: 'LUXURY',
-    discription: 'Comfort, luxurious design',
+    label: t('luxury.title'),
+    discription: t('luxury.description'),
     carImage: <Image src={NormalCarImage} alt='' />,
     peopleIcon: ({ color }: { color: string }) => <Icon icon='material-symbols:man' width={20} style={{ color }} />,
-    capacity: '4'
+    capacity: t('luxury.capacity')
   },
   {
-    label: 'FAMILY',
-    discription: 'Big, sturdy, family friendly',
+    label: t('family.title'),
+    discription: t('family.description'),
     carImage: (
-      <Box ml={-4}>
+      <Box>
         <Image src={FamilyCarImage} alt='' />
       </Box>
     ),
     peopleIcon: ({ color }: { color: string }) => (
       <Icon icon='material-symbols:family-restroom' width={20} style={{ color }} />
     ),
-    capacity: '8'
+    capacity: t('family.capacity')
   },
   {
-    label: 'ECONOMY',
-    discription: 'Practicality, comfort, everyday use',
+    label: t('economy.title'),
+    discription: t('economy.description'),
     carImage: <Image src={NormalCarImage} alt='' />,
     peopleIcon: ({ color }: { color: string }) => <Icon icon='material-symbols:man' width={20} style={{ color }} />,
-    capacity: '4'
+    capacity: t('economy.capacity')
   }
 ]

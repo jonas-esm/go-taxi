@@ -8,6 +8,8 @@ import { Icon } from '@iconify-icon/react/dist/iconify.mjs'
 
 import { toast } from 'react-toastify'
 
+import { useTranslations } from 'next-intl'
+
 import { carTypeOptions } from '@/utils/car-selector-data'
 import { formatTime, formatDistance } from '@/utils/fetch-address.utils'
 
@@ -22,6 +24,7 @@ function CarTypeSelector({ isFetchingTripDetails }: { isFetchingTripDetails?: bo
   const { palette } = useTheme()
   const { control, getValues, setValue } = useFormContext<ReservationFormData>()
   const { data: priceList } = usePriceListQuery()
+  const t = useTranslations('home')
 
   const tripCostList = useMemo(() => {
     const familyRatePerKm = priceList?.data?.list?.find(item => item.category === 'public_family')?.per_km || 0
@@ -44,7 +47,7 @@ function CarTypeSelector({ isFetchingTripDetails }: { isFetchingTripDetails?: bo
       name='carType'
       render={({ field: { value, onChange } }) => (
         <Stack>
-          {carTypeOptions.map((item, ind) => (
+          {carTypeOptions(t).map((item, ind) => (
             <Box
               key={ind}
               sx={{
@@ -81,7 +84,7 @@ function CarTypeSelector({ isFetchingTripDetails }: { isFetchingTripDetails?: bo
             >
               <Stack direction={'row'} justifyContent={'space-between'}>
                 {item.carImage}
-                <Box mr={'auto'} ml={2}>
+                <Box marginInlineEnd={'auto'} marginInlineStart={2}>
                   <Stack direction={'row'}>
                     <Typography color={getTextColor(item, value, palette).color} variant='h4' mr={2}>
                       {item.label}

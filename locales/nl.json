@@ -1,0 +1,63 @@
+{
+    "header": {
+        "welcome": "Welkom bij GO TAXI",
+        "tagline": "Gemak & Snelheid",
+        "subTagline": "Voor al uw behoeften"
+    },
+    "home": {
+        "title": "Home",
+        "reserveTrip": "Reserveer uw rit",
+        "fromPlaceholder": "Van...?",
+        "toPlaceholder": "Naar...?",
+        "datePlaceholder": "Kies een datum",
+        "timePlaceholder": "Kies een tijd",
+        "chooseCar": "Kies een auto die bij u past",
+        "luxury": {
+            "title": "LUXE",
+            "capacity": "4",
+            "description": "Comfort, luxueus ontwerp"
+        },
+        "family": {
+            "title": "FAMILIE",
+            "capacity": "8",
+            "description": "Groot, stevig, gezinsvriendelijk"
+        },
+        "economy": {
+            "title": "ECONOMISCH",
+            "capacity": "4",
+            "description": "Praktisch, comfortabel, dagelijks gebruik"
+        },
+        "proceedButton": "Doorgaan"
+    },
+    "contactForm": {
+        "title": "Voer uw contactgegevens in",
+        "fullNamePlaceholder": "Volledige naam",
+        "phoneNumberPlaceholder": "Telefoonnummer",
+        "notesPlaceholder": "Notities...",
+        "submitButton": "Ga naar Betaling"
+    },
+    "aboutUs": {
+        "title": "Over Ons",
+        "description": "Bij GoTaxi bieden we een gemakkelijke en naadloze online autoverhuurervaring. Ons doel is om het huurproces eenvoudig en veilig te maken voor al onze klanten."
+    },
+    "ourMission": {
+        "title": "Onze Missie",
+        "description": "Onze missie is om de beste autoverhuurservice te bieden door een breed scala aan voertuigen aan te bieden die aan alle behoeften voldoen, uitstekende klantenservice te leveren en een comfortabele en gemakkelijke ervaring te garanderen voor al onze klanten."
+    },
+    "ourServices": {
+        "title": "Onze Diensten",
+        "description": "Wij bieden een breed scala aan voertuigen om aan alle behoeften te voldoen, of u nu op zoek bent naar een economische auto, een luxe voertuig, een gezinsauto of zelfs een sportwagen. Wij zijn hier om u te helpen de perfecte auto te kiezen voor uw volgende reis."
+    },
+    "footer": {
+        "contactUs": "Neem contact met ons op",
+        "description": "Voor vragen of meer informatie kunt u contact met ons opnemen via"
+    },
+    "successCard": {
+        "thankYouMessage": "Bedankt voor het kiezen van GoTaxi",
+        "contactMessage": "We nemen binnenkort contact met u op via dit telefoonnummer:",
+        "bookNewRideButton": "Boek een nieuwe rit",
+        "contactUsButton": "Neem contact op",
+        "onWhatsapp": "On Whatsapp",
+        "byCall": "Regular Call"
+    }
+}

@@ -11,6 +11,8 @@ import { loadStripe } from '@stripe/stripe-js'
 
 import { useDispatch } from 'react-redux'
 
+import { useTranslations } from 'next-intl'
+
 import FormContainer from './form-container'
 import CustomTextField from '@/components/shared/text-input'
 
@@ -28,6 +30,7 @@ function PersonalInfoForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) 
   const { control, handleSubmit } = useFormContext<ReservationFormData>()
   const { mutateAsync } = usePostTripRequestMutation()
   const dispatch = useDispatch()
+  const t = useTranslations('contactForm')
 
   const onSubmit = async (formData: ReservationFormData) => {
     setIsLoading(true)
@@ -88,23 +91,33 @@ function PersonalInfoForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) 
     <Slide appear in direction='left'>
       <Box>
         <FormContainer>
-          <Typography mb={2}> Enter your contact info</Typography>
+          <Typography mb={2}> {t('title')}</Typography>
           <Card sx={{ background: '#fff' }}>
             <CardContent sx={{ pt: 1 }}>
               <Stack>
                 <Box>
-                  <CustomTextField control={control} name='fullName' iconName='tabler:user' placeholder='Full Name' />
+                  <CustomTextField
+                    control={control}
+                    name='fullName'
+                    iconName='tabler:user'
+                    placeholder={t('fullNamePlaceholder')}
+                  />
                 </Box>
                 <Box>
                   <CustomTextField
                     control={control}
                     name='phoneNumber'
                     iconName='solar:phone-calling-linear'
-                    placeholder='Phone Number'
+                    placeholder={t('phoneNumberPlaceholder')}
                   />
                 </Box>
                 <Box>
-                  <CustomTextField control={control} name='notes' iconName='tabler:note' placeholder='Notes...' />
+                  <CustomTextField
+                    control={control}
+                    name='notes'
+                    iconName='tabler:note'
+                    placeholder={t('notesPlaceholder')}
+                  />
                 </Box>
               </Stack>
             </CardContent>
@@ -123,7 +136,7 @@ function PersonalInfoForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) 
             console.log(er)
           })}
         >
-          Go To Payment
+          {t('submitButton')}
         </Button>
       </Box>
     </Slide>

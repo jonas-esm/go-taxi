@@ -1,6 +1,8 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 
+import { useTranslations } from 'next-intl'
+
 import { Box, Card, Divider, Slide, Stack, Typography, useTheme } from '@mui/material'
 
 import { useFormContext } from 'react-hook-form'
@@ -29,6 +31,10 @@ function AddressForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) => vo
   const [debounceSearchTo, setDebounceSearchTo] = useState('')
 
   const userLocation = useGeolocation()
+
+  console.log(userLocation.loading)
+
+  const t = useTranslations()
 
   const [isFromReady] = useDebounce(
     () => {
@@ -88,7 +94,7 @@ function AddressForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) => vo
     <Slide appear in direction='right'>
       <Box>
         <FormContainer>
-          <Typography mb={2}>Reserve your trip</Typography>
+          <Typography mb={2}>{t('home.reserveTrip')}</Typography>
           <Card sx={{ background: '#fff' }}>
             <Box sx={{ px: 6, pt: 1, pb: 2 }}>
               <Stack>
@@ -98,7 +104,7 @@ function AddressForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) => vo
                     options={fromPlacesRes?.data || []}
                     iconName={'iconoir:search'}
                     textFieldProps={{
-                      placeholder: 'From...?'
+                      placeholder: t('home.fromPlaceholder')
                     }}
                     autoCompleteProps={{
                       onInputChange: (e, value) => {
@@ -121,7 +127,7 @@ function AddressForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) => vo
                     options={toPlacesRes?.data || []}
                     iconName={'iconoir:search'}
                     textFieldProps={{
-                      placeholder: 'To..?'
+                      placeholder: t('home.toPlaceholder')
                     }}
                     autoCompleteProps={{
                       onInputChange: (e, value) => {
@@ -177,7 +183,7 @@ function AddressForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) => vo
 
         <Box>
           <Typography mt={6} mb={2} ml={2}>
-            Choose car that suits you
+            {t('home.chooseCar')}
           </Typography>
           <CarTypeSelector isFetchingTripDetails={isFetchingTripDetails} />
           <Button
@@ -187,7 +193,7 @@ function AddressForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) => vo
             onClick={() => setActiveStep(p => p + 1)}
             size='large'
           >
-            Proceed
+            {t('home.proceedButton')}
           </Button>
         </Box>
       </Box>

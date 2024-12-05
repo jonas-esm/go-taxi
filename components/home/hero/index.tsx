@@ -1,14 +1,16 @@
 import React from 'react'
 
 import { Stack, Typography, useTheme } from '@mui/material'
+import { useTranslations } from 'next-intl'
 
 function HeroSection() {
   const { palette, typography } = useTheme()
+  const t = useTranslations('header')
 
   return (
     <Stack justifyContent={'center'} alignItems={'center'} spacing={1}>
       <Typography variant='h3'>
-        Welcome to{' '}
+        {t('welcome')}{' '}
         <Typography
           display={'inline'}
           //   variant="h3"
@@ -20,9 +22,9 @@ function HeroSection() {
         </Typography>
       </Typography>
       <Typography variant='h1' fontWeight={400}>
-        Ease & Speed
+        {t('tagline')}
       </Typography>
-      <Typography variant='h3'>Meet all your needs</Typography>
+      <Typography variant='h3'>{t('subTagline')}</Typography>
     </Stack>
   )
 }
