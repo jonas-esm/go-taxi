@@ -7,38 +7,34 @@
  */
 
 // MUI Imports
-import { Poppins } from "next/font/google";
+import { Poppins } from 'next/font/google'
 
-import { deepmerge } from "@mui/utils";
-import type { Theme } from "@mui/material/styles";
+import { deepmerge } from '@mui/utils'
+import type { Theme } from '@mui/material/styles'
 
 // Type Imports
-import type { SystemMode } from "../../@core/types";
+import type { SystemMode } from '../../@core/types'
 
 // Core Theme Imports
-import coreTheme from "../../@core/theme";
+import coreTheme from '../../@core/theme'
 
 // Next Imports
 
 const publicSans = Poppins({
-    subsets: ["latin"],
-    weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900']
+})
 
-const mergedTheme = (
-    settings: any,
-    mode: SystemMode,
-    direction: Theme["direction"]
-) => {
-    // Vars
-    const userTheme = {
-        // Write your overrides here.
-        typography: {
-            fontFamily: publicSans.style.fontFamily,
-        },
-    } as Theme;
+const mergedTheme = (settings: any, mode: SystemMode, direction: Theme['direction']) => {
+  // Vars
+  const userTheme = {
+    // Write your overrides here.
+    typography: {
+      fontFamily: publicSans.style.fontFamily
+    }
+  } as Theme
 
-    return deepmerge(coreTheme(settings, mode, direction), userTheme);
-};
+  return deepmerge(coreTheme(settings, mode, direction), userTheme)
+}
 
-export default mergedTheme;
+export default mergedTheme

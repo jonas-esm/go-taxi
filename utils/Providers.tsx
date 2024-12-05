@@ -1,20 +1,22 @@
-import React from "react";
+'use client'
+import React from 'react'
 
-import ThemeProvider from "@/components/theme";
-import ClientProviders from "./ClientProviders";
+import { Provider } from 'react-redux'
+
+import ThemeProvider from '@/components/theme'
+import ClientProviders from './ClientProviders'
+import { store } from '@/redux/store/store'
 
 const Providers = (props: { children: React.ReactNode }) => {
-    //
-    const { children } = props;
+  const { children } = props
 
-    // Vars
+  return (
+    <Provider store={store}>
+      <ThemeProvider direction='ltr' systemMode='light'>
+        <ClientProviders>{children}</ClientProviders>
+      </ThemeProvider>
+    </Provider>
+  )
+}
 
-    return (
-        <ThemeProvider direction="ltr" systemMode="light">
-            <ClientProviders>{children}</ClientProviders>
-            {/* //   <AppReactToastify position={themeConfig.toastPosition} hideProgressBar /> */}
-        </ThemeProvider>
-    );
-};
-
-export default Providers;
+export default Providers

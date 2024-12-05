@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 
-import { Stack } from "@mui/material";
+import { Stack } from '@mui/material'
 
 export default function PagesLayout({
-  children,
+  children
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-  return <Stack justifyContent={"center"}>{children}</Stack>;
+  return <Stack justifyContent={'center'}>{children}</Stack>
 }

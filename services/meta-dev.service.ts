@@ -88,8 +88,6 @@ export const sendWhatsappMessage = async ({
     }
   }
 
-  console.log(JSON.stringify(data))
-
   const config = {
     method: 'post',
     maxBodyLength: Infinity,
@@ -100,8 +98,6 @@ export const sendWhatsappMessage = async ({
     },
     data: data
   }
-
-  console.log(config)
 
   return axios.post('https://graph.facebook.com/v20.0/411434302063808/messages', data, {
     maxBodyLength: Infinity,

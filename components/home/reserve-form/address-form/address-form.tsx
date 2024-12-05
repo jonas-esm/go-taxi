@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 
-import { Box, Card, CircularProgress, Divider, Slide, Stack, Typography, useTheme } from '@mui/material'
+import { Box, Card, Divider, Slide, Stack, Typography, useTheme } from '@mui/material'
 
 import { useFormContext } from 'react-hook-form'
 
@@ -29,8 +29,6 @@ function AddressForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) => vo
   const [debounceSearchTo, setDebounceSearchTo] = useState('')
 
   const userLocation = useGeolocation()
-
-  console.log(JSON.stringify(userLocation), userLocation, userLocation.loading)
 
   const [isFromReady] = useDebounce(
     () => {
@@ -78,11 +76,19 @@ function AddressForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) => vo
     }
   }, [userLocationPlacesRes?.data])
 
+  //   useEffect(() => {
+  //     console.log(window?.location)
+
+  //     if (window?.location?.search?.length > 0) {
+  //       router.push('/en')
+  //     }
+  //   }, [])
+
   return (
     <Slide appear in direction='right'>
       <Box>
         <FormContainer>
-          <Typography mb={2}> Reserve your trip</Typography>
+          <Typography mb={2}>Reserve your trip</Typography>
           <Card sx={{ background: '#fff' }}>
             <Box sx={{ px: 6, pt: 1, pb: 2 }}>
               <Stack>
@@ -119,8 +125,6 @@ function AddressForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) => vo
                     }}
                     autoCompleteProps={{
                       onInputChange: (e, value) => {
-                        console.log('form onchange', value)
-
                         if (e?.type === 'change') {
                           setValue('toSearch', value)
                         }

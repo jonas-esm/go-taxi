@@ -15,11 +15,15 @@ function PaymentButton() {
       const pr = stripe?.paymentRequest({
         country: 'NL', // Replace with your country
         currency: 'eur',
+
         total: {
           label: 'GoTaxi Trip',
           amount: 1000 // Amount in cents (e.g., $10.00)
         }
 
+        // displayItems:[
+        //     {}
+        // ]
         // requestPayerName: true,
         // requestPayerEmail: true,
       })

@@ -5,23 +5,32 @@ import { Typography, Card, CardContent, Stack, Box, Slide } from '@mui/material'
 
 import { useFormContext } from 'react-hook-form'
 
+import { Elements } from '@stripe/react-stripe-js'
+
+import { loadStripe } from '@stripe/stripe-js'
+
+import { useDispatch } from 'react-redux'
+
 import FormContainer from './form-container'
 import CustomTextField from '@/components/shared/text-input'
 
 import type { ReservationFormData } from '.'
 import Button from '@/components/shared/button'
 import { usePostTripRequestMutation } from '@/services/address.service'
-import PaymentButton from './payment-button'
+import CheckoutWrapper from '../checkout/wrapper'
+import { updateState } from '@/redux/slices/tripSlice'
+
+// import { CheckoutForm } from './checkout-form'
 
 function PersonalInfoForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) => void }) {
   const [isLoading, setIsLoading] = useState(false)
 
   const { control, handleSubmit } = useFormContext<ReservationFormData>()
   const { mutateAsync } = usePostTripRequestMutation()
+  const dispatch = useDispatch()
 
   const onSubmit = async (formData: ReservationFormData) => {
     setIsLoading(true)
-    console.log(formData)
 
     //@ts-ignore
     const tripDate =
@@ -56,13 +65,12 @@ function PersonalInfoForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) 
       time: null
     }
 
-    console.log(payload)
-
     try {
       //@ts-ignore
       const res = await mutateAsync(payload)
 
-      console.log(res)
+      dispatch(updateState(formData))
+
       setActiveStep(2)
     } catch (error) {
       console.log(error)
@@ -102,7 +110,8 @@ function PersonalInfoForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) 
             </CardContent>
           </Card>
         </FormContainer>
-        <PaymentButton />
+
+        {/* <CheckoutWrapper /> */}
 
         <Button
           sx={{ mt: 8 }}
@@ -114,7 +123,7 @@ function PersonalInfoForm({ setActiveStep }: { setActiveStep: (step: 0 | 1 | 2) 
             console.log(er)
           })}
         >
-          Submit
+          Go To Payment
         </Button>
       </Box>
     </Slide>

@@ -6,6 +6,8 @@ import { Controller, useFormContext } from 'react-hook-form'
 
 import { Icon } from '@iconify-icon/react/dist/iconify.mjs'
 
+import { toast } from 'react-toastify'
+
 import { carTypeOptions } from '@/utils/car-selector-data'
 import { formatTime, formatDistance } from '@/utils/fetch-address.utils'
 
@@ -18,7 +20,7 @@ const getTextColor = (item: { label: string }, value: string, palette: Palette) 
 
 function CarTypeSelector({ isFetchingTripDetails }: { isFetchingTripDetails?: boolean }) {
   const { palette } = useTheme()
-  const { control, getValues } = useFormContext<ReservationFormData>()
+  const { control, getValues, setValue } = useFormContext<ReservationFormData>()
   const { data: priceList } = usePriceListQuery()
 
   const tripCostList = useMemo(() => {
@@ -64,7 +66,17 @@ function CarTypeSelector({ isFetchingTripDetails }: { isFetchingTripDetails?: bo
                     : undefined
               }}
               onClick={() => {
+                if (!(+tripCostList?.[item.label as 'LUXURY' | 'FAMILY' | 'ECONOMY'] > 0)) {
+                  toast.error('Please fill the address fields for the pickup and the destination points first.', {
+                    position: 'bottom-center'
+                  })
+
+                  return
+                }
+
                 onChange(item.label)
+                setValue('amount', +tripCostList?.[item.label as 'LUXURY' | 'FAMILY' | 'ECONOMY']?.toFixed(2))
+                setValue('tripCost', +tripCostList?.[item.label as 'LUXURY' | 'FAMILY' | 'ECONOMY']?.toFixed(2))
               }}
             >
               <Stack direction={'row'} justifyContent={'space-between'}>

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { AppBar, Box, Toolbar, useScrollTrigger } from '@mui/material'
 
 import LogoSvg from '../../assets/logo.svg'
+import ChangeLangualge from '../shared/change-language'
 
 function ElevationScroll(props: any) {
   const { children, window } = props
@@ -50,6 +51,16 @@ function MyAppBar() {
           <Toolbar>
             <Box mx='auto'>
               <Image src={LogoSvg} alt='logo' />
+            </Box>
+
+            <Box
+              sx={{
+                position: 'absolute',
+                right: 10,
+                color: '#000'
+              }}
+            >
+              <ChangeLangualge />
             </Box>
           </Toolbar>
         </AppBar>

@@ -1,15 +1,15 @@
-"use client";
+'use client'
 
-import { useContext } from "react";
+import { useContext } from 'react'
 
-import { FetchContext } from "../contexts/fetch.context";
+import { FetchContext } from '../contexts/fetch.context'
 
 export const useFetch = () => {
-    const context = useContext(FetchContext);
+  const context = useContext(FetchContext)
 
-    if (!context) {
-        throw new Error("useFetch must be used within a FetchProvider");
-    }
+  if (!context) {
+    throw new Error('useFetch must be used within a FetchProvider')
+  }
 
-    return context;
-};
+  return context
+}
