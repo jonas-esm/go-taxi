@@ -8,13 +8,13 @@ import { Alert, Box, CircularProgress, Divider, Stack, Typography } from '@mui/m
 import { useDispatch } from 'react-redux'
 
 import { useFormContext } from 'react-hook-form'
+import { useTranslations } from 'next-intl'
 
 import Button from '@/components/shared/button'
 import FormContainer from '../reserve-form/form-container'
 import { updateState } from '@/redux/slices/paymentSlice'
 
 import type { ReservationFormData } from '../reserve-form'
-import { useTranslations } from 'next-intl'
 
 export default function CheckoutForm({
   dpmCheckerLink,
