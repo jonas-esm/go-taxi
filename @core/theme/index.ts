@@ -1,5 +1,5 @@
 // Next Imports
-import { Poppins } from 'next/font/google'
+import { Poppins, Alexandria } from 'next/font/google'
 
 // MUI Imports
 import type { Theme } from '@mui/material/styles'
@@ -24,6 +24,11 @@ const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700', '800', '900']
 })
 
+const alexFont = Alexandria({
+  subsets: ['arabic'],
+  weight: ['300', '400', '500', '600', '700', '800', '900']
+})
+
 const theme = (settings: any, mode: SystemMode, direction: Theme['direction']): Theme => {
   return {
     direction,
@@ -40,7 +45,7 @@ const theme = (settings: any, mode: SystemMode, direction: Theme['direction']): 
       }
     },
     shadows: shadows(),
-    typography: typography(poppins.style.fontFamily),
+    typography: typography(direction === 'rtl' ? alexFont.style.fontFamily : poppins.style.fontFamily),
     customShadows: customShadows(mode),
     mainColorChannels: {
       light: '47 43 61',

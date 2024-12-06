@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useTransition } from 'react'
 
 import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import type { StripePaymentElementOptions } from '@stripe/stripe-js'
@@ -14,6 +14,7 @@ import FormContainer from '../reserve-form/form-container'
 import { updateState } from '@/redux/slices/paymentSlice'
 
 import type { ReservationFormData } from '../reserve-form'
+import { useTranslations } from 'next-intl'
 
 export default function CheckoutForm({
   dpmCheckerLink,
@@ -25,6 +26,7 @@ export default function CheckoutForm({
   const stripe = useStripe()
   const elements = useElements()
   const { getValues } = useFormContext<ReservationFormData>()
+  const t = useTranslations('payment')
 
   const [message, setMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -72,7 +74,9 @@ export default function CheckoutForm({
 
   return (
     <FormContainer>
-      <Typography mb={4}>Payment Amount: {amountToPay?.toLocaleString()}</Typography>
+      <Typography mb={4}>
+        {t('paymentAmount')}: {amountToPay?.toLocaleString()}
+      </Typography>
       <form id='payment-form' onSubmit={handleSubmit}>
         <PaymentElement id='payment-element' options={paymentElementOptions} onReady={() => setIsElementReady(true)} />
 
@@ -86,14 +90,14 @@ export default function CheckoutForm({
               type='submit'
               disabled={!stripe || !elements}
             >
-              Submit
+              {t('submitButton')}
             </Button>
             <Box mx={'25%'} mb={2} textAlign={'center'}>
-              <Divider>Or</Divider>
+              <Divider>{t('or')}</Divider>
             </Box>
             <Box textAlign={'center'}>
               <Button disabled={isLoading} variant='text' onClick={() => handlePayInCash()}>
-                Pay in cash
+                {t('payWithCash')}
               </Button>
             </Box>
           </>

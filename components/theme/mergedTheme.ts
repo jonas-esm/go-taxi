@@ -7,7 +7,7 @@
  */
 
 // MUI Imports
-import { Poppins } from 'next/font/google'
+import { Changa, Poppins } from 'next/font/google'
 
 import { deepmerge } from '@mui/utils'
 import type { Theme } from '@mui/material/styles'
@@ -25,12 +25,17 @@ const publicSans = Poppins({
   weight: ['300', '400', '500', '600', '700', '800', '900']
 })
 
+const alexFont = Changa({
+  subsets: ['arabic'],
+  weight: ['300', '400', '500', '600', '700', '800']
+})
+
 const mergedTheme = (settings: any, mode: SystemMode, direction: Theme['direction']) => {
   // Vars
   const userTheme = {
     // Write your overrides here.
     typography: {
-      fontFamily: publicSans.style.fontFamily
+      fontFamily: direction === 'rtl' ? alexFont.style.fontFamily : publicSans.style.fontFamily
     }
   } as Theme
 

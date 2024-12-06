@@ -77,7 +77,10 @@ export default function CompletePage({ setActiveStep }: { setActiveStep: (n: 3 |
       }
 
       if (paymentIntent.status === 'succeeded') {
-        toast.success(ALERT_CONTENT_MAP[paymentIntent.status].text, { toastId: successToastId })
+        toast.success(ALERT_CONTENT_MAP[paymentIntent.status].text, {
+          toastId: successToastId,
+          position: 'bottom-center'
+        })
         setActiveStep(3)
       }
     })

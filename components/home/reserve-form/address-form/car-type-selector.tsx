@@ -16,8 +16,8 @@ import { formatTime, formatDistance } from '@/utils/fetch-address.utils'
 import type { ReservationFormData } from '..'
 import { usePriceListQuery } from '@/services/address.service'
 
-const getTextColor = (item: { label: string }, value: string, palette: Palette) => ({
-  color: item.label !== value ? palette.text.primary : '#fff'
+const getTextColor = (item: { id: string }, value: string, palette: Palette) => ({
+  color: item.id !== value ? palette.text.primary : '#fff'
 })
 
 function CarTypeSelector({ isFetchingTripDetails }: { isFetchingTripDetails?: boolean }) {
@@ -54,14 +54,14 @@ function CarTypeSelector({ isFetchingTripDetails }: { isFetchingTripDetails?: bo
                 px: 3,
                 py: 4,
                 borderRadius: 1.5,
-                background: item.label === value ? palette.info.main : '#F7F8FA',
+                background: item.id === value ? palette.info.main : '#F7F8FA',
 
                 mb: 2,
                 border: `1px solid ${palette.background.paper}`,
 
                 cursor: 'pointer',
                 ' &:hover':
-                  item.label !== value
+                  item.id !== value
                     ? {
                         background: '#f8f8f8',
                         border: `1px solid ${palette.primary.main}`
@@ -69,7 +69,7 @@ function CarTypeSelector({ isFetchingTripDetails }: { isFetchingTripDetails?: bo
                     : undefined
               }}
               onClick={() => {
-                if (!(+tripCostList?.[item.label as 'LUXURY' | 'FAMILY' | 'ECONOMY'] > 0)) {
+                if (!(+tripCostList?.[item.id as 'LUXURY' | 'FAMILY' | 'ECONOMY'] > 0)) {
                   toast.error('Please fill the address fields for the pickup and the destination points first.', {
                     position: 'bottom-center'
                   })
@@ -77,9 +77,9 @@ function CarTypeSelector({ isFetchingTripDetails }: { isFetchingTripDetails?: bo
                   return
                 }
 
-                onChange(item.label)
-                setValue('amount', +tripCostList?.[item.label as 'LUXURY' | 'FAMILY' | 'ECONOMY']?.toFixed(2))
-                setValue('tripCost', +tripCostList?.[item.label as 'LUXURY' | 'FAMILY' | 'ECONOMY']?.toFixed(2))
+                onChange(item.id)
+                setValue('amount', +tripCostList?.[item.id as 'LUXURY' | 'FAMILY' | 'ECONOMY']?.toFixed(2))
+                setValue('tripCost', +tripCostList?.[item.id as 'LUXURY' | 'FAMILY' | 'ECONOMY']?.toFixed(2))
               }}
             >
               <Stack direction={'row'} justifyContent={'space-between'}>
@@ -113,15 +113,12 @@ function CarTypeSelector({ isFetchingTripDetails }: { isFetchingTripDetails?: bo
                       fontSize: 40
                     }}
                   />
-                ) : tripCostList?.[item.label as 'LUXURY' | 'FAMILY' | 'ECONOMY'] ? (
+                ) : tripCostList?.[item.id as 'LUXURY' | 'FAMILY' | 'ECONOMY'] ? (
                   <Box ml={'auto'} color={getTextColor(item, value, palette)}>
                     {/* <div className='text-black '>{formatTime(getValues().tripDetails?.routes[0].duration || 0)}</div> */}
                     {/* <div className='text-black'>{formatDistance(getValues().tripDetails?.routes[0].distance || 0)}</div> */}
                     <div className='text-black'>
-                      {(+tripCostList?.[item.label as 'LUXURY' | 'FAMILY' | 'ECONOMY']?.toFixed(2)).toLocaleString(
-                        'en'
-                      )}
-                      €
+                      {(+tripCostList?.[item.id as 'LUXURY' | 'FAMILY' | 'ECONOMY']?.toFixed(2)).toLocaleString('en')}€
                     </div>
                   </Box>
                 ) : null}

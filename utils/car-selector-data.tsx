@@ -10,6 +10,7 @@ import NormalCarImage from '@/assets/normal_car.png'
 
 export const carTypeOptions = (t: any) => [
   {
+    id: 'LUXURY',
     label: t('luxury.title'),
     discription: t('luxury.description'),
     carImage: <Image src={NormalCarImage} alt='' />,
@@ -17,6 +18,7 @@ export const carTypeOptions = (t: any) => [
     capacity: t('luxury.capacity')
   },
   {
+    id: 'FAMILY',
     label: t('family.title'),
     discription: t('family.description'),
     carImage: (
@@ -30,6 +32,7 @@ export const carTypeOptions = (t: any) => [
     capacity: t('family.capacity')
   },
   {
+    id: 'ECONOMY',
     label: t('economy.title'),
     discription: t('economy.description'),
     carImage: <Image src={NormalCarImage} alt='' />,

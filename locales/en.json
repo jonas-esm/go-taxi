@@ -59,5 +59,11 @@
         "contactUsButton": "Contact Us",
         "onWhatsapp": "On Whatsapp",
         "byCall": "Regular Call"
+    },
+    "payment": {
+        "paymentAmount": "Payment Amount",
+        "submitButton": "Submit",
+        "payWithCash": "Pay in Cash",
+        "or": "Or"
     }
 }

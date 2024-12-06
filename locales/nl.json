@@ -59,5 +59,11 @@
         "contactUsButton": "Neem contact op",
         "onWhatsapp": "On Whatsapp",
         "byCall": "Regular Call"
+    },
+    "payment": {
+        "paymentAmount": "Betaalbedrag",
+        "submitButton": "Indienen",
+        "payWithCash": "Contant betalen",
+        "or": "Of"
     }
 }
