@@ -61,6 +61,8 @@ export const usePriceListQuery = () => {
   return useQuery<{ data: { list: { category: string; per_km: number }[] } }>({
     queryKey: ['price-list'],
     queryFn: () => axios.get('/api/pricelist'),
-    enabled: true
+    enabled: true,
+    refetchOnWindowFocus: true,
+    staleTime: 10 * 60 * 1000
   })
 }
